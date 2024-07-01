@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrediLnc - Home</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        /* Header and Navigation Styles */
+        header {
+            background-color: #273746;
+            color: #ffffff;
+            padding: 50px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 650;
+            letter-spacing: 1px;
+        }
+        /* Navigation Styles */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #34495e;
+            padding: 10px 10px;
+            border-bottom: 2px solid #ccc;
+           
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #f7e9e9;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        /* Main Content Styles */
+        .main-content {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .section-box {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        .section-heading {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333333;
+            text-align: center;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+        }
+        .feature h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333333;
+        }
+        .feature-img {
+            width: 120px; /* Adjust the width as needed */
+            height: auto;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        .feature-text {
+            flex: 1;
+            text-align: justify;
+            color: #666666;
+        }
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .divider{
+            margin: 0 30px;
+            border-left: 2px solid #090404;
+            height: 24px;
+        }
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        form {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        textarea,
+        input[type="file"],
+        input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #273746;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            max-width: 150px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #34495e;
+        }
+
+    </style>
+</head>
+<body>
+    <header> 
+        <h1>PrediLnc - The lncRNA Disease Association Predictor</h1>
+    </header>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <span class="divider"></span>
+        <a href="/about">About the Features</a>
+        <span class="divider"></span>
+        <a href="/evidences">Evidences</a>
+        <span class="divider"></span>
+        <a href="/applications">Applications</a>
+        <span class="divider"></span>
+        <a href="/contribute">Contribute</a>
+        <span class="divider"></span>
+        <a href="/about-us">About Us</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="section-box">
+            <h2 class="section-heading">Contribute to PrediLnc</h2>
+            <p>If you have valuable information or data that can contribute to our research and predictions, we welcome your contribution. Please fill in the necessary details below:</p>
+            <form action="/submit_contribution" method="post" enctype="multipart/form-data">
+                <div class="form-container">
+                    <br>
+                    <div>
+                        <label for="file_data">Upload the files supporting to data related lncRNAs, diseases or genes:</label>
+                        <input type="file" id="file_data" name="file_data">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="text_data">Give links/text as a proof to the authenticity of the above data</label>
+                        <textarea id="text_data" name="text_data" rows="4" cols="50"></textarea>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 The Translational Biology Lab - PrediLnc. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

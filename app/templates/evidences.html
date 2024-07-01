@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrediLnc - Home</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        /* Header and Navigation Styles */
+        header {
+            background-color: #273746;
+            color: #ffffff;
+            padding: 50px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 650;
+            letter-spacing: 1px;
+        }
+        /* Navigation Styles */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #34495e;
+            padding: 10px 10px;
+            border-bottom: 2px solid #ccc;
+           
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #f7e9e9;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        /* Main Content Styles */
+        .main-content {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .section-box {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        .section-heading {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333333;
+            text-align: center;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+        }
+        .feature h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333333;
+        }
+        .feature-img {
+            width: 500px;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        .feature-text {
+            flex: 1;
+            text-align: justify;
+            color: #666666;
+        }
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .divider{
+            margin: 0 30px;
+            border-left: 2px solid #090404;
+            height: 24px;
+        }
+
+    </style>
+</head>
+<body>
+    <header> 
+        <h1>PrediLnc - The lncRNA Disease Association Predictor</h1>
+    </header>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <span class="divider"></span>
+        <a href="/about">About the Features</a>
+        <span class="divider"></span>
+        <a href="/evidences">Evidences</a>
+        <span class="divider"></span>
+        <a href="/applications">Applications</a>
+        <span class="divider"></span>
+        <a href="/contribute">Contribute</a>
+        <span class="divider"></span>
+        <a href="/about-us">About Us</a>
+    </nav>
+    <section class="features">
+        <div class="main-content">
+            <!-- lncRNA Features -->
+            <div class="section-box">
+                <div class="section-heading">Evidences</div>
+                <div class="features-list">
+                    <!-- First 4 features -->
+                    <div class="feature">
+                        <img src="{{ url_for('static', filename='roc.png') }}" alt="Kmer Frequency Image" class="feature-img">
+                        <div class="feature-text">
+                            <h3>Evidences using Performance Metrics</h3>
+                            <p>
+                                The developed lncRNA disease association prediction model demonstrates exceptional performance, boasting an accuracy of 96.56%. Its precision at 97.12% ensures minimal false positives, while a recall rate of 95.98% captures a significant portion of true positives. With an F1-score of 96.54%, the model maintains a balanced accuracy and precision trade-off. The Matthews Correlation Coefficient (MCC) stands strong at 93.13%, emphasizing its robustness in classification. Notably, the Area Under the Precision-Recall Curve (AUPR) impressively reaches 99.13%, highlighting the model's ability to yield high-confidence predictions. These metrics collectively underscore the reliability and efficacy of this lncRNA disease association prediction model.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-text">
+                            <h3>Some strong Manual evidences from PubMed in support of PrediLnc Performance</h3>
+                            <p>
+                                1. Malat1 -> Esophageal Squamous Cell Carcinoma => Erratum: TGF-β1-Induced Upregulation of MALAT1 Promotes Kazakh's Esophageal Squamous Cell Carcinoma Invasion by EMT: Erratum (35711822)
+
+
+                                <br>
+                                <br>
+
+                                2. H19 -> melanoma => Downregulation of lncRNA H19 sensitizes melanoma cells to cisplatin by regulating the miR-18b/IGF1 axis (32265386)
+
+                                <br>
+                                <br>
+
+                                3. NORAD -> Lung Cancer => Impacts of LncRNA NORAD on the Proliferation, Apoptosis, and Chemosensitivity of Non-small Cell Lung Cancer Cells by Regulating ZNF217 through MiR-199a-3p (37653011)
+
+                                <br>
+                                <br>
+
+                                4. LINC00963 -> osteosarcoma => The LncRNA LINC00963 facilitates osteosarcoma proliferation and invasion by suppressing miR-204-3p/FN1 axis (30975024)
+
+                                <br>
+                                <br>
+
+                                5. BACE1-AS -> alzheimer disease => A novel synthetic derivative of biaryl guanidine as a potential BACE1 inhibitor, to treat Alzheimer's disease: In-silico, in-vitro and in-vivo evaluation (36451562)
+
+
+                                <br>
+                                <br>
+
+                                6. HOXA11-AS -> Colorectal Cancer => The long non-coding RNA HOXA11-AS promotes epithelial mesenchymal transition by sponging miR-149-3p in Colorectal Cancer. (32922545)
+
+                            </p>
+                        </div>
+                    </div>
+
+                   
+                    
+                    
+                </div>
+            </div>
+
+            
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 The Translational Biology Lab - PrediLnc. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

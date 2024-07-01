@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrediLnc - Home</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .main-content {
+        text-align: center;
+        padding: 50px 0;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .option-buttons {
+            display:  grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            justify-content: center;
+            gap: 100px;
+        }
+
+        .option-buttons a {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .option-buttons a:hover {
+            opacity: 0.8;
+        }
+
+        .option-buttons a:nth-child(1) {
+            background-color: #df675a;
+        }
+
+        .option-buttons a:nth-child(2) {
+            background-color: #17b458;
+        }
+        /* Header and Navigation Styles */
+        header {
+            background-color: #273746;
+            color: #ffffff;
+            padding: 50px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 650;
+            letter-spacing: 1px;
+        }
+        /* Navigation Styles */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #34495e;
+            padding: 10px 10px;
+            border-bottom: 2px solid #ccc;
+           
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #f7e9e9;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .divider {
+            margin: 0 30px;
+            border-left: 2px solid #090404;
+            height: 24px;
+        }
+
+        .navbar a:hover {
+            background-color: #0a4058;
+        }
+        .main-content {
+            padding: 50px 20px;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif; /* Add Montserrat font */
+        }
+
+        .main-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .option-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .option-buttons a {
+            padding: 15px 25px;
+            text-decoration: none;
+            color: white;
+            border-radius: 25px;
+            background-color: #3498db;
+            margin: 15px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .option-buttons a:hover {
+            background-color: #2980b9;
+        }
+        /* Additional Styling */
+        .features {
+            background-color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .feature-box {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .feature-box img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .feature-box p {
+            text-align: left;
+            max-width: 400px;
+        }
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .feature-box-container {
+            display: flex;
+            justify-content: space-around; /* Adjust alignment as needed */
+            align-items: stretch; /* Boxes will stretch to equal height */
+            margin-top: 30px;
+            flex-wrap: wrap; /* Enable wrapping for smaller screens */
+            padding: 5 5px;
+        }
+
+        .feature-box {
+            width: calc(45% - 20px); /* Adjust width as needed, considering padding */
+            margin-bottom: 20px; /* Provide space between boxes */
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box; /* Include padding and border in the width calculation */
+        }
+
+        .feature-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-box h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .feature-box p {
+            font-size: 0.95em;
+        }
+
+                /* Main Content Styles */
+        .main-content {
+            padding: 50px 20px;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .main-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        /* Accordion Styles */
+        .objective-accordion {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ccc;
+            border-radius: 20px; /* Rounded corners */
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-title {
+            display: block;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #2d85c0;
+            color: white;
+            font-size: 1.5em; /* Font size */
+            border-radius: 100px; /* Rounded corners for the title */
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f9f9f9;
+            padding: 3px;
+            font-family: 'Arial', sans-serif; /* Change font to Arial */
+        }
+
+        .accordion-toggle {
+            display: none;
+        }
+
+        .accordion-item:hover .accordion-content {
+            max-height: 200px; /* Adjust as needed */
+            transition: max-height 0.3s ease-in;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header> 
+        <h1>PrediLnc - The lncRNA Disease Association Predictor</h1>
+    </header>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <span class="divider"></span>
+        <a href="/about">About the Features</a>
+        <span class="divider"></span>
+        <a href="/evidences">Evidences</a>
+        <span class="divider"></span>
+        <a href="/applications">Applications</a>
+        <span class="divider"></span>
+        <a href="/contribute">Contribute</a>
+        <span class="divider"></span>
+        <a href="/about-us">About Us</a>
+    </nav>
+    
+    <div class="main-content">
+        <div class="objective-accordion">
+            <div class="accordion-item">
+                <input type="checkbox" id="objective-toggle" class="accordion-toggle">
+                <label for="objective-toggle" class="accordion-title">Welcome to PrediLnc</label>
+                <div class="accordion-content">
+                    <p>PrediLnc revolutionizes disease understanding by harnessing lncRNAs to decode complexities. It identifies lncRNA-disease correlations, enabling innovative diagnostics and targeted therapies. Achieving exceptional results—99% AUC, 97% accuracy, and 93% MCC—via robust cross-validation signifies its model's excellence.</p>
+                </div>
+            </div>
+        </div>
+        <div class="option-buttons">
+            <a href="/topDiseasepred" style="background-color: #e74c3c;">Predict Diseases for a lncRNA</a>
+            <a href="/toplncRNApred" style="background-color: #2ecc71;">Predict lncRNAs for a Disease</a>
+        </div>
+    </div>
+    
+    
+    
+    <div class="feature-box-container">
+        <div class="feature-box">
+            <h2>Unlocking the Intricacies of Disease</h2>
+            <p>Long non-coding RNAs (lncRNAs) are pivotal in decoding disease complexities by modulating gene expression. Their diverse roles in regulating cellular functions make them promising targets for understanding diseases and developing innovative diagnostic tools or treatments.</p>
+        </div>
+        
+        <div class="feature-box">
+            <h2>Cancer and lncRNAs                  </h2>
+            <p>In the world of oncology, lncRNAs are pivotal influencers. Some act as accelerators, promoting tumor growth and metastasis, while others act as brakes, suppressing cancer progression. Understanding their roles in regulating gene expression, cellular proliferation, and metastatic processes offers new avenues for targeted cancer therapies.</p>
+        </div>
+    </div>
+
+    <div class="feature-box-container">
+        <div class="feature-box">
+            <h2>Unveiling the Mystery</h2>
+            <p>While initially deemed as genetic noise, lncRNAs have stepped into the limelight as critical regulators of gene expression. They orchestrate a symphony within our cells, fine-tuning the expression of genes, impacting cellular processes, and, consequently, influencing our health.</p>
+        </div>
+        
+        <div class="feature-box">
+            <h2>Neurological Disorders and lncRNAs</h2>
+            <p>From Alzheimer's to Parkinson's and beyond, lncRNAs are emerging as significant players in neurological diseases. Their involvement in neuronal development, synaptic plasticity, and neuroinflammation provides insights into the complex mechanisms underlying these conditions, offering potential targets for therapeutic interventions.</p>
+        </div>
+    </div>
+
+    <div class="feature-box-container">
+        <div class="feature-box">
+            <h2>Shaping Disease Landscapes</h2>
+            <p>Understanding the role of lncRNAs has been instrumental in elucidating the underlying mechanisms of several diseases. From cancer to cardiovascular ailments, neurodegenerative disorders to metabolic conditions, lncRNAs have been found to either exacerbate or mitigate the progression of these illnesses.</p>
+        </div>
+        
+        <div class="feature-box">
+            <h2>Cardiovascular Diseases and lncRNAs</h2>
+            <p>In the realm of heart health, lncRNAs orchestrate essential processes affecting endothelial function, inflammation, and vascular integrity. Unraveling their impact on cardiovascular diseases presents opportunities for novel diagnostic markers and therapeutic strategies.            </p>
+        </div>
+    </div>
+
+    <div class="feature-box-container">
+        <div class="feature-box">
+            <h2>Precision Medicine's New Frontier</h2>
+            <p>The significance of lncRNAs extends beyond unraveling disease mechanisms. Their presence, absence, or altered expression patterns can serve as potential diagnostic markers. Their unique signatures hold promise in designing targeted therapies, ushering in a new era of precision medicine tailored to individual genetic profiles.</p>
+        </div>
+        
+        <div class="feature-box">
+            <h2>Metabolic Disorders and lncRNAs</h2>
+            <p>Metabolic ailments like diabetes and obesity are influenced by lncRNAs, which play roles in insulin sensitivity, adipogenesis, and energy homeostasis. Understanding these molecular mechanisms could pave the way for innovative treatments and personalized interventions.            </p>
+        </div>
+    </div>
+
+    <div class="feature-box-container">
+        <div class="feature-box">
+            <h2>Future Horizons</h2>
+            <p>As research advances, the potential applications of lncRNAs in disease diagnosis, prognosis, and treatment continue to expand. The exploration of their intricate functions presents a promising avenue for innovative therapeutic interventions, offering hope for more effective and personalized healthcare strategies.            </p>
+        </div>
+        
+        <div class="feature-box">
+            <h2>Immunological Implications of lncRNAs</h2>
+            <p>The immune system's intricate dance is also influenced by lncRNAs. Dysregulation of these molecules may contribute to autoimmune conditions and chronic inflammation. Exploring their roles in immune responses provides potential avenues for targeted immunotherapies and disease management.            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 The Translational Biology Lab - PrediLnc. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

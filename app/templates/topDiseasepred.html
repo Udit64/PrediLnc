@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+<html>
+    <!-- CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+<!-- JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<head>
+    <title>Select lncRNAs, Diseases, and Targets</title>
+    <style>
+
+
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        
+        /* Select box styles */
+        .select-box {
+            margin-bottom: 20px;
+        }
+
+        .select-box label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .select-box select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        /* Submit button */
+        .submit-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50; /* Green background color */
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            }
+
+            /* Styling when hovering over the button */
+            .submit-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+            }
+
+            header {
+            background-color: #273746;
+            color: #ffffff;
+            padding: 50px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 650;
+            letter-spacing: 1px;
+        }
+        /* Navigation Styles */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #34495e;
+            padding: 10px 10px;
+            border-bottom: 2px solid #ccc;
+           
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #f7e9e9;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .divider{
+            margin: 0 30px;
+            border-left: 2px solid #090404;
+            height: 24px;
+        }
+
+        .navbar a:hover {
+            background-color: #0a4058;
+        }
+
+        /* Styling for the lncRNA container */
+        .lncRNA-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Style for the lncRNA information box */
+        .lncRNA-info-box {
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            box-shadow: 0 0 500px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 1500px;
+            width: 100%; /* Ensure the box fills the available width */
+            margin: 0 auto; /* Center the box horizontally */
+        }
+
+        /* Heading style */
+        .lncRNA-info-box h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* List style */
+        .lncRNA-info-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .lncRNA-info-box li {
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+
+        
+    </style>
+</head>
+<body>
+    <header> 
+        <h1 style="font-family: 'Pacifico', cursive;"> PrediLnc - The lncRNA Disease Association Predictor</h1>
+    </header>
+
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <span class="divider"></span>
+        <a href="/about">About the Features</a>
+        <span class="divider"></span>
+        <a href="/evidences">Evidences</a>
+        <span class="divider"></span>
+        <a href="/applications">Applications</a>
+        <span class="divider"></span>
+        <a href="/contribute">Contribute</a>
+        <span class="divider"></span>
+        <a href="/about-us">About Us</a>
+    </nav>
+
+    
+
+
+
+    <div class="lncRNA-container">
+        <div class="lncRNA-info-box">
+            
+            
+            <ul>
+                <form id="myForm" method="POST" action="/input_lncRNA">
+                    <div class="select-box">
+                        <label for="lncRNA-dropdown">Select an lncRNA:</label>
+                        <select id="lncRNA-dropdown" name="lncRNA" class="select2">
+                            <!-- Replace this section with your lncRNA options -->
+                            <option value="" disabled selected hidden>Select an lncRNA</option>
+                            {% for lncRNA in lncRNA_names %}
+                                <option value="{{ lncRNA }}">{{ lncRNA }}</option>
+                            {% endfor %}
+                            <option value="Other">Other</option> <!-- Option for 'Other' -->
+                        </select>
+                    </div>
+                
+                    <div class="select-box" id="custom-lncRNA-section" style="display: none;">
+                        <label for="custom-lncRNA">Enter Other lncRNA name:</label>
+                        <input type="text" id="custom-lncRNA" name="custom-lncRNA">
+                    </div>
+                
+                    <input type="submit" value="Submit lncRNA">
+                </form>
+                
+                <!-- Section to display selected lncRNA -->
+                <div id="selected-lncRNA-section" style="display: none;">
+                    <h4>Selected lncRNA:</h4>
+                    <p id="selected-lncRNA"></p>
+                </div>
+                
+                
+                <div class="option-buttons" id="prediction-button-section" style="display: none;">
+                    <form id="submitForm" action="/submit" method="post">
+                        <!-- Your form fields here -->
+                        <button id="show-prediction-btn">Data for the given lncRNA is available. Click here if you want to see prediction using data available to us, if not enter the details related to given lncRNA </button>
+                    </form>
+                    <!-- JavaScript to submit the form and redirect -->
+                    <script>
+                        document.querySelector('.option-buttons a').addEventListener('click', function(event) {
+                            event.preventDefault(); // Prevent default link behavior
+                            document.getElementById('submitForm').submit(); // Submit the form
+                            window.location.href = "/result.html"; // Redirect to result.html
+                        });
+                    </script>
+                </div>
+        
+        
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $('.select2').select2({
+                            tags: true,
+                            createTag: function (params) {
+                                return {
+                                    id: params.term,
+                                    text: params.term,
+                                    newTag: true
+                                };
+                            }
+                        }); // Initialize Select2
+                
+                        $('#lncRNA-dropdown').change(function () {
+                            if ($(this).val() === 'Other') {
+                                $('#custom-lncRNA-section').show();
+                            } else {
+                                $('#custom-lncRNA-section').hide();
+                            }
+                        });
+                
+                        $('#myForm').submit(function (event) {
+                            event.preventDefault(); // Prevent default form submission
+                
+                            var selectedOption = $('#lncRNA-dropdown').val();
+                            if (selectedOption === 'Other') {
+                                var customLncRNA = $('#custom-lncRNA').val();
+                                if (customLncRNA.trim() !== '') {
+                                    // Set the custom lncRNA as the selected option
+                                    selectedOption = customLncRNA;
+                                }
+                            }
+                
+                            // Send form data to the server using AJAX
+                            $.ajax({
+                                type: 'POST',
+                                url: '/input_lncRNA',
+                                data: { lncRNA: selectedOption },
+                                success: function (response) {
+                                    // Update the displayed lncRNA on success
+                                    $('#selected-lncRNA').text(selectedOption);
+                                    $('#selected-lncRNA-section').show();
+                
+                                    // Show or hide the 'show prediction' button based on the server response
+                                    if (response.show_prediction_button) {
+                                        $('#prediction-button-section').show();
+                                    } else {
+                                        $('#prediction-button-section').hide();
+                                    }
+                                    console.log(response);
+                                },
+                                error: function (error) {
+                                    // Handle errors if any
+                                    console.error(error);
+                                }
+                            });
+                        });
+                
+                        // Handle click event for the 'Show Prediction' button
+                        $('#show-prediction-btn').click(function () {
+                            // Perform actions when the button is clicked (e.g., navigate to result.html)
+                            // Add your functionality here
+                        });
+                    });
+                </script>
+                
+        
+        
+                 
+                
+            </ul>
+        </div>
+    </div>
+    
+
+
+    <div class="lncRNA-container">
+        <div class="lncRNA-info-box">
+
+            <ul>
+                <form id="sequenceForm" enctype="multipart/form-data">
+                    <h4>Enter the lncRNA sequence:</h4>
+                    <textarea id="sequence" name="sequence" rows="4" cols="50" placeholder="Enter DNA sequence here"></textarea>
+                    <br><br>
+                    <h4>Or Upload a FASTA file:</h4>
+                    <input type="file" id="file" name="file" accept=".fasta" />
+                    <br><br>
+                    <button type="button" onclick="showSequence()">Show Sequence</button>
+                    <br><br>
+                    <!-- Submit button -->
+                    <input type="submit" value="Submit Sequence">
+                </form>
+                
+                <div id="sequenceContainer"></div>
+                
+                <script>
+                    function showSequence() {
+                        var sequenceInput = document.getElementById('sequence').value;
+                        var sequenceFromFileUpload = "";
+                
+                        var fileInputSeq = document.getElementById('file');
+                        var file = fileInputSeq.files[0];
+                
+                        if (file) {
+                            var reader = new FileReader();
+                            reader.readAsText(file, 'UTF-8');
+                            reader.onload = function (evt) {
+                                var fileContent = evt.target.result;
+                                sequenceFromFileUpload = fileContent.trim();
+                                displaySequence(sequenceInput, sequenceFromFileUpload);
+                            }
+                            reader.onerror = function (evt) {
+                                console.error('Error reading file');
+                            }
+                        } else {
+                            displaySequence(sequenceInput, sequenceFromFileUpload);
+                        }
+                    }
+                
+                    function displaySequence(inputSequence, fileSequence) {
+                        var sequenceContainer = document.getElementById('sequenceContainer');
+                        sequenceContainer.innerHTML = ''; // Clear previous content
+                
+                        var sequence = inputSequence || fileSequence;
+                        var p = document.createElement('p');
+                        p.textContent = "DNA Sequence: " + sequence;
+                
+                        sequenceContainer.appendChild(p);
+                    }
+                
+                    document.getElementById('sequenceForm').addEventListener('submit', function (event) {
+                        event.preventDefault();
+                
+                        // Show the DNA sequence
+                        showSequence();
+                
+                        // Get the sequence data
+                        var sequenceInput = document.getElementById('sequence').value;
+                        var fileInput = document.getElementById('file').files[0];
+                        var formData = new FormData();
+                        formData.append('sequence', sequenceInput);
+                        formData.append('file', fileInput);
+                
+                        // Send the sequence data to Flask endpoint
+                        fetch('/input_sequence', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => {
+                            // Handle the response as needed
+                        })
+                        .catch(error => {
+                            // Handle errors
+                        });
+                    });
+                </script>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    
+
+
+    <div class="lncRNA-container">
+        <div class="lncRNA-info-box">
+            <ul>
+                <h4>
+                    Select Diseases
+                </h4>
+                <style>
+                   
+                    /* Fixed height for the select box */
+                    #diseaseSelect {
+                        height: 200px; /* Adjust this value as needed */
+                        overflow-y: scroll;
+                    }
+                </style>
+                
+                <!-- Form for selecting diseases -->
+                <form id="diseaseForm" enctype="multipart/form-data">
+                    <!-- Form for selecting diseases -->
+                    <input type="text" id="searchInput" onkeyup="searchDiseases()" placeholder="Search for diseases">
+                    <br><br>
+                    <select multiple name="diseases" id="diseaseSelect">
+                        <!-- Your disease options here -->
+                        {% for disease in disease_list %}
+                        <option value="{{ disease }}" {% if disease in submitted_data %} selected {% endif %}>{{ disease }}</option>
+                        {% endfor %}
+                    </select>
+                    <br><br>
+                    <button type="button" onclick="clearSelection()">Clear Selection</button>
+                    <br><br>
+                    <!-- File input field -->
+                    <h4>Or Enter the text file containing disease names line by line:</h4>
+                    <input type="file" id="fileInput" name="fileInput" accept=".txt" />
+                    <br><br>
+                    <!-- Show selected diseases button -->
+                    <button type="button" onclick="showSelectedDiseases()">Show Selected Diseases</button>
+                    <br><br>
+                    <!-- Submit button -->
+                    <input type="submit" value="Submit Selection">
+                    <h4>Selected Diseases: </h4>
+                </form>
+                
+                
+                <div id="selectedDiseasesContainer"></div>
+                
+                <script>
+                    var selectedOptions = [];
+                
+                    function storeSelectedOptions() {
+                        var select = document.getElementById('diseaseSelect');
+                        var options = select.getElementsByTagName('option');
+                        selectedOptions = [];
+                
+                        for (var i = 0; i < options.length; i++) {
+                            if (options[i].selected) {
+                                selectedOptions.push(options[i].value);
+                            }
+                        }
+                    }
+                
+                    function restoreSelectedOptions() {
+                        var select = document.getElementById('diseaseSelect');
+                        var options = select.getElementsByTagName('option');
+                
+                        for (var i = 0; i < options.length; i++) {
+                            if (selectedOptions.includes(options[i].value)) {
+                                options[i].selected = true;
+                            }
+                        }
+                    }
+                
+                    function searchDiseases() {
+                        storeSelectedOptions();
+                
+                        var input, filter, select, option, i;
+                        input = document.getElementById('searchInput');
+                        filter = input.value.toUpperCase();
+                        select = document.getElementById('diseaseSelect');
+                        option = select.getElementsByTagName('option');
+                
+                        for (i = 0; i < option.length; i++) {
+                            if (option[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                option[i].style.display = '';
+                            } else {
+                                option[i].style.display = 'none';
+                            }
+                        }
+                        select.style.height = '200px';
+                        restoreSelectedOptions();
+                    }
+                
+                    function clearSelection() {
+                        var select = document.getElementById('diseaseSelect');
+                        var options = select.getElementsByTagName('option');
+                
+                        for (var i = 0; i < options.length; i++) {
+                            options[i].selected = false;
+                            options[i].style.display = ''; // Reset display style
+                        }
+                    }
+                
+                    function showSelectedDiseases() {
+                        storeSelectedOptions(); // Update selectedOptions array with scroll bar selections
+        
+                        var selectedFromScrollBar = selectedOptions;
+                        var selectedFromFileUpload = []; // Array to hold selected diseases from file upload
+        
+                        var fileInput = document.getElementById('fileInput');
+                        var file = fileInput.files[0];
+        
+                        if (file) {
+                            var reader = new FileReader();
+                            reader.readAsText(file, 'UTF-8');
+                            reader.onload = function (evt) {
+                                var fileContent = evt.target.result;
+                                selectedFromFileUpload = fileContent.split('\n').map(item => item.trim()).filter(item => item !== '');
+                                displaySelectedDiseases(selectedFromScrollBar.concat(selectedFromFileUpload));
+                            }
+                            reader.onerror = function (evt) {
+                                console.error('Error reading file');
+                            }
+                        } else {
+                            displaySelectedDiseases(selectedFromScrollBar);
+                        }
+                    }
+                
+                    function displaySelectedDiseases(selectedDiseases) {
+                        var selectedDiseasesContainer = document.getElementById('selectedDiseasesContainer');
+                        selectedDiseasesContainer.innerHTML = ''; // Clear previous content
+                
+                        var ul = document.createElement('ul');
+                        selectedDiseases.forEach(function (disease) {
+                            var li = document.createElement('li');
+                            li.textContent = disease;
+                            ul.appendChild(li);
+                        });
+                
+                        selectedDiseasesContainer.appendChild(ul);
+                    }
+                
+                    // Modify the form submission logic to include displaying selected diseases
+                    document.getElementById('diseaseForm').addEventListener('submit', function (event) {
+                        event.preventDefault();
+                
+                        // Show the selected diseases
+                        showSelectedDiseases();
+                
+                        // Your existing form submission logic
+                        fetch('/input_diseases', {
+                            method: 'POST',
+                            body: new FormData(document.getElementById('diseaseForm'))
+                        })
+                        .then(response => {
+                            // Handle the response as needed
+                        })
+                        .catch(error => {
+                            // Handle errors
+                        });
+                    });
+                </script>
+            </ul>
+        </div>
+    </div>
+
+    
+
+
+
+
+
+
+
+    
+
+    <div class="lncRNA-container">
+        <div class="lncRNA-info-box">
+       
+            <ul>
+                <h4>
+                    Select Targets
+                </h4>
+                <style>
+                    /* Fixed height for the select box */
+                    #targetSelect {
+                        height: 200px; /* Adjust this value as needed */
+                        overflow-y: scroll;
+                    }
+                </style>
+                <form id="targetForm" enctype="multipart/form-data">
+                    <!-- Form for selecting targets -->
+                    <input type="text" id="searchTarget" onkeyup="searchTargets()" placeholder="Search for targets">
+                    <br><br>
+                    <select multiple name="targets" id="targetSelect">
+                        <!-- Your target options here -->
+                        {% for target in target_list %}
+                        <option value="{{ target }}" {% if target in submitted_data %} selected {% endif %}>{{ target }}</option>
+                        {% endfor %}
+                    </select>
+                    <br><br>
+                    <button type="button" onclick="clearSelectionTarget()">Clear Selection</button>
+                    <br><br>
+                    <!-- File input field -->
+                    <h4>Or Enter the text file containing target names line by line:</h4>
+                    <input type="file" id="fileTarget" name="fileInput" accept=".txt" />
+                    <br><br>
+                    <!-- Show selected targets button -->
+                    <button type="button" onclick="showSelectedTargets()">Show Selected Targets</button>
+                    <br><br>
+                    <!-- Submit button -->
+                    <input type="submit" value="Submit Selection">
+                    <h4>Selected Targets: </h4>
+                </form>
+                
+                <div id="selectedTargetsContainer"></div>
+        
+                <script>
+                    var selectedTargets = [];
+                
+                    function storeSelectedTargets() {
+                        var select = document.getElementById('targetSelect');
+                        var options = select.getElementsByTagName('option');
+                        selectedTargets = [];
+                
+                        for (var i = 0; i < options.length; i++) {
+                            if (options[i].selected) {
+                                selectedTargets.push(options[i].value);
+                            }
+                        }
+                    }
+                
+                    function restoreSelectedTargets() {
+                        var select = document.getElementById('targetSelect');
+                        var options = select.getElementsByTagName('option');
+                
+                        for (var i = 0; i < options.length; i++) {
+                            if (selectedTargets.includes(options[i].value)) {
+                                options[i].selected = true;
+                            }
+                        }
+                    }
+                
+                    function searchTargets() {
+                        storeSelectedTargets();
+                
+                        var input, filter, select, option, i;
+                        input = document.getElementById('searchTarget');
+                        filter = input.value.toUpperCase();
+                        select = document.getElementById('targetSelect');
+                        option = select.getElementsByTagName('option');
+                
+                        for (i = 0; i < option.length; i++) {
+                            if (option[i].textContent.toUpperCase().indexOf(filter) > -1) {
+                                option[i].style.display = '';
+                            } else {
+                                option[i].style.display = 'none';
+                            }
+                        }
+                        restoreSelectedTargets();
+                    }
+                    function clearSelectionTarget() {
+                        var selectTarget = document.getElementById('targetSelect');
+                        var options = selectTarget.getElementsByTagName('option');
+        
+                        for (var i = 0; i < options.length; i++) {
+                            options[i].selected = false;
+                            options[i].style.display = ''; // Reset display style
+                        }
+                    }
+                    function showSelectedTargets() {
+                        storeSelectedTargets(); 
+                
+                        var selectedFromScrollBar = selectedTargets;
+                        var selectedFromFileUpload = []; 
+                
+                        var fileInputTarget = document.getElementById('fileTarget');
+                        var file = fileInputTarget.files[0];
+                
+                        if (file) {
+                            var reader = new FileReader();
+                            reader.readAsText(file, 'UTF-8');
+                            reader.onload = function (evt) {
+                                var fileContent = evt.target.result;
+                                selectedFromFileUpload = fileContent.split('\n').map(item => item.trim()).filter(item => item !== '');
+                                displaySelectedTargets(selectedFromScrollBar.concat(selectedFromFileUpload));
+                            }
+                            reader.onerror = function (evt) {
+                                console.error('Error reading file');
+                            }
+                        } else {
+                            displaySelectedTargets(selectedFromScrollBar);
+                        }
+                    }
+                
+                    function displaySelectedTargets(selectedTargets) {
+                        var selectedTargetsContainer = document.getElementById('selectedTargetsContainer');
+                        selectedTargetsContainer.innerHTML = ''; 
+                
+                        var ul = document.createElement('ul');
+                        selectedTargets.forEach(function (target) {
+                            var li = document.createElement('li');
+                            li.textContent = target;
+                            ul.appendChild(li);
+                        });
+                
+                        selectedTargetsContainer.appendChild(ul);
+                    }
+                
+                    document.getElementById('targetForm').addEventListener('submit', function (event) {
+                        event.preventDefault();
+                
+                        showSelectedTargets();
+                
+                        fetch('/input_target', {
+                            method: 'POST',
+                            body: new FormData(document.getElementById('targetForm'))
+                        })
+                        .then(response => {
+                            // Handle the response as needed
+                        })
+                        .catch(error => {
+                            // Handle errors
+                        });
+                    });
+                </script>
+        
+        
+                
+       
+               
+       
+      
+        
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="lncRNA-container">
+        <div class="lncRNA-info-box">
+            <ul>
+                <div class="option-buttons">
+                    <form id="submitForm" action="/submit" method="post">
+                        <!-- Your form fields here -->
+                        <input type="submit" class="submit-button"  value="Final Submit">
+                    </form>
+                    <!-- JavaScript to submit the form and redirect -->
+                    <script>
+                        document.querySelector('.option-buttons a').addEventListener('click', function(event) {
+                            event.preventDefault(); // Prevent default link behavior
+                            document.getElementById('submitForm').submit(); // Submit the form
+                            window.location.href = "/result.html"; // Redirect to result.html
+                        });
+                    </script>
+                </div>
+            </ul>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
+         

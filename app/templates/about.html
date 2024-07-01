@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrediLnc - Home</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        /* Header and Navigation Styles */
+        header {
+            background-color: #273746;
+            color: #ffffff;
+            padding: 50px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 650;
+            letter-spacing: 1px;
+        }
+        /* Navigation Styles */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #34495e;
+            padding: 10px 10px;
+            border-bottom: 2px solid #ccc;
+           
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #f7e9e9;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        /* Main Content Styles */
+        .main-content {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .section-box {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        .section-heading {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333333;
+            text-align: center;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+        }
+        .feature h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333333;
+        }
+        .feature-img {
+            width: 500px;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        .feature-text {
+            flex: 1;
+            text-align: justify;
+            color: #666666;
+        }
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .divider{
+            margin: 0 30px;
+            border-left: 2px solid #090404;
+            height: 24px;
+        }
+
+    </style>
+</head>
+<body>
+    <header> 
+        <h1>PrediLnc - The lncRNA Disease Association Predictor</h1>
+    </header>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <span class="divider"></span>
+        <a href="/about">About the Features</a>
+        <span class="divider"></span>
+        <a href="/evidences">Evidences</a>
+        <span class="divider"></span>
+        <a href="/applications">Applications</a>
+        <span class="divider"></span>
+        <a href="/contribute">Contribute</a>
+        <span class="divider"></span>
+        <a href="/about-us">About Us</a>
+    </nav>
+    <!-- Specific section content for each page -->
+    <section class="features">
+        <div class="main-content">
+            <!-- lncRNA Features -->
+            <div class="section-box">
+                <div class="section-heading">lncRNA Features</div>
+                <div class="features-list">
+                    <!-- First 4 features -->
+                    <div class="feature">
+                        <img src="{{ url_for('static', filename='kmer.png') }}" alt="Kmer Frequency Image" class="feature-img">
+                        <div class="feature-text">
+                            <h3>Kmer Frequency (k=3)</h3>
+                            <p>
+                                K-mer frequency analysis involves counting occurrences of fixed-length subsequences ('k-mers') within genetic sequences. In studying long non-coding RNAs (lncRNAs), k-mer frequency emerges as a critical feature due to its ability to capture sequence characteristics. When 'k' is set to 3 (k=3), this approach examines trinucleotide patterns, providing insight into lncRNA sequence composition. LncRNAs, lacking protein-coding potential, exhibit unique sequence patterns different from protein-coding genes. K-mer frequencies in lncRNAs serve as discriminative features, enabling their differentiation from other RNA types. The abundance and distribution of specific trinucleotide motifs within lncRNAs contribute to their structural and functional diversity. By analyzing k-mer frequencies in lncRNAs, researchers uncover inherent sequence signatures associated with diverse biological functions, regulatory roles, and cellular processes. In disease association prediction, setting k=3 allows the identification of disease-specific k-mer patterns in lncRNAs. Differential k-mer frequencies between healthy and diseased samples help pinpoint potential disease-associated lncRNAs. Utilizing k=3 enables the detection of small, disease-relevant variations within lncRNA sequences. This approach aids in elucidating lncRNA involvement in disease mechanisms, offering valuable insights for diagnosis, prognosis, and potential therapeutic targets in various disorders.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <img src="{{ url_for('static', filename='levdis.png') }}" alt="Kmer Frequency Image" class="feature-img">
+                        <div class="feature-text">
+                        <h3>Levenshtein Distance</h3>
+                        <p>
+                            Levenshtein distance is a metric used to measure the dissimilarity between two sequences, like genetic strings, by calculating the minimum number of single-character edits needed to transform one sequence into the other. In the context of lncRNAs (long non-coding RNAs), this metric serves as a valuable feature for analyzing sequence variations among these molecules. By applying Levenshtein distance to lncRNA sequences, researchers quantify their sequence divergence or similarity. This metric can be used as a feature in computational models designed for lncRNA analysis. Incorporating Levenshtein distance into machine learning models or algorithms enables the prediction of lncRNA functionality and associations with diseases. This metric's significance lies in its capacity to capture subtle sequence differences that might indicate functional or structural variations among lncRNAs. Using this feature facilitates the classification of lncRNAs based on their sequence disparities, aiding in the identification of disease-related patterns or conserved motifs across different lncRNA sequences. For disease association predictions, Levenshtein distance-based features help delineate relationships between lncRNA sequences and diseases. Integrating Levenshtein distance enriches the predictive power of models, enhancing our ability to decipher the roles of lncRNAs in disease mechanisms.
+                        </p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <img src="{{ url_for('static', filename='lga.png') }}" alt="Kmer Frequency Image" class="feature-img">
+                        <div class="feature-text">
+                        <h3>LncRNA Target Association</h3>
+                        <p>
+                            In the realm of lncRNA disease association prediction models, integrating lncRNA-target associations as a feature offers significant insights into the functional role of long non-coding RNAs (lncRNAs). These associations with diverse targets like proteins, miRNAs, mRNAs, and other molecules serve as valuable indicators of regulatory mechanisms and potential disease implications. The inclusion of lncRNA-target associations as features enriches the model by providing multifaceted information. It elucidates the complex interplay between lncRNAs and their targets, showcasing how these interactions influence biological processes and disease pathways. For instance, understanding which proteins or miRNAs a specific lncRNA interacts with can shed light on its regulatory functions in crucial cellular processes and disease progression. This feature enables the model to discern patterns and infer potential disease associations more accurately. By leveraging known associations between lncRNAs and their targets, the model gains a better grasp of the underlying molecular mechanisms and can predict novel disease associations based on similar patterns observed in known relationships.                        </p>
+                        
+                        <img src="{{ url_for('static', filename='pie_lg.png') }}" alt="Kmer Frequency Image" class="feature-img">
+                        
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <img src="{{ url_for('static', filename='gip_lnc.png') }}" alt="Kmer Frequency Image" class="feature-img">
+                        <div class="feature-text">
+                            <h3>Gaussian Interaction Profile for lncRNAs</h3>
+                            <p>
+                                The Gaussian Interaction Profile (GIP) of long non-coding RNAs (lncRNAs) extracted from an lncRNA-disease association matrix serves as a valuable feature for predicting lncRNA-disease associations. The GIP representation captures the interactions between lncRNAs and various targets like proteins, miRNAs, mRNAs, and others. The process begins by constructing an lncRNA-disease association matrix, where rows represent lncRNAs, columns represent diseases, and the matrix cells contain association scores quantifying the relationship between lncRNAs and diseases. To extract GIP features, the matrix is transformed into a bipartite network where lncRNAs and their associated targets form nodes, and their interactions represent edges. GIP is generated by applying a Gaussian similarity function to the bipartite network. This function computes the similarity between lncRNAs and targets based on their interactions. Each lncRNA is represented by a Gaussian distribution over its interactions with various targets, capturing the strength and pattern of these relationships. These GIP features encode the complex interactions between lncRNAs and their associated targets in a continuous vector space, providing a rich representation for machine learning models. Incorporating these features into an lncRNA-disease association prediction model enhances its predictive power, enabling better understanding and inference of potential associations between lncRNAs and diseases based on their interaction profiles.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disease Features -->
+            <div class="section-box">
+                <div class="section-heading">Disease Features</div>
+                <div class="features-list">
+                    <!-- First 4 features -->
+                    <div class="feature">
+                        <img src="{{ url_for('static', filename='dss.png') }}" alt="Kmer Frequency Image" class="feature-img">
+                        <div class="feature-text">
+                            <h3>Disease Semantic Similarity</h3>
+                            <p>Semantic similarity between diseases can be computed using the DOSE package in R, particularly the doSim function, which leverages the Disease Ontology (DO) to quantify the similarity between diseases based on their annotations. By measuring the similarity between diseases, it becomes possible to create a feature that represents the relationships and proximity between different diseases. In the context of constructing an lncRNA-disease model, utilizing disease semantic similarity as a feature enhances the representation of diseases. Incorporating this feature allows for a more nuanced understanding of disease associations and similarities, aiding in the prediction and inference of lncRNA-disease associations. For instance, leveraging disease semantic similarity as a feature for an lncRNA-disease model involves encoding disease-related information based on their similarities. This information can provide insights into diseases that share similar biological pathways, phenotypic manifestations, or genetic underpinnings. Consequently, when predicting potential associations between lncRNAs and diseases, considering disease semantic similarity as a feature enables a more comprehensive and contextually rich representation of diseases, thereby improving the accuracy and robustness of the model's predictions.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <img src="{{ url_for('static', filename='dsa.png') }}" alt="Kmer Frequency Image" class="feature-img">
+                        <div class="feature-text">
+                            <h3>Disease Gene Association</h3>
+                            <p>Disease genes association serves as a valuable feature in constructing the lncRNA-disease association matrix due to its role in elucidating the genetic basis and molecular mechanisms underlying diseases. Integrating information about known disease-associated genes into the matrix enhances the representation of diseases in relation to lncRNAs. By incorporating disease genes associations, the matrix gains insights into the genetic landscape of diseases. This inclusion allows for the identification of shared genetic factors between diseases and potential lncRNA candidates that interact with or regulate these genes. It helps uncover the intricate relationships between lncRNAs and disease-associated genes, facilitating the inference of lncRNA-disease association. Moreover, the utilization of disease genes association as a feature enriches the predictive capacity of the model by considering the genetic context of diseases. It enables the exploration of specific lncRNA-gene interactions implicated in disease pathways or regulatory networks. This comprehensive approach aids in prioritizing potential lncRNA candidates for further experimental validation and therapeutic exploration. In summary, integrating disease genes association data into the lncRNA-disease association matrix augments its capacity to capture the genetic underpinnings of diseases, enabling a more precise and informed prediction of lncRNA-disease associations.                                
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <img src="{{ url_for('static', filename='gip_dis.png') }}" alt="Kmer Frequency Image" class="feature-img">
+                        <div class="feature-text">
+                            <h3>Gaussian Interaction Profile for diseases</h3>
+                            <p>The Gaussian Interaction Profile (GIP) is derived from the lncRNA-disease association matrix to capture the relationships between lncRNAs and diseases. This process involves several steps to generate meaningful features for predicting lncRNA-disease associations.
+
+                                Firstly, the lncRNA-disease association matrix represents the interactions between lncRNAs and diseases, where rows correspond to lncRNAs, columns to diseases, and the entries indicate the strength or likelihood of their association.
+                                
+                                To derive GIP features, the matrix undergoes Gaussian transformation, which involves applying a Gaussian function to convert the original association scores into a Gaussian distribution. This transformation helps in capturing the underlying patterns and similarities within the data, emphasizing the relationships that might be obscured in the raw association matrix.
+                                
+                                Each lncRNA and disease pair in the transformed matrix is represented by a GIP feature vector, encapsulating their relationship in a continuous space. These vectors encode the similarity or association strength between lncRNAs and diseases based on the Gaussian-transformed values.
+                                
+                                In a lncRNA-disease association prediction model, these GIP features serve as valuable inputs. Machine learning algorithms can leverage these features to learn the intricate associations between lncRNAs and diseases, enabling more accurate predictions by capturing the nuanced relationships embedded in the transformed data.              
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 The Translational Biology Lab - PrediLnc. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
