@@ -7,48 +7,61 @@
     <style>
         /* General Styles */
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Georgia', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
             color: #333;
         }
+
         /* Header and Navigation Styles */
         header {
             background-color: #273746;
             color: #ffffff;
-            padding: 50px 0;
+            padding: 40px 20px;
             text-align: center;
         }
+
         header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 2em;
             font-weight: 650;
             letter-spacing: 1px;
         }
+
         /* Navigation Styles */
         .navbar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #34495e;
-            padding: 10px 10px;
-            border-bottom: 2px solid #ccc;
-           
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      background-color: #34495e;
+      font-size: 1.1em;
+      padding: 2px;
+      border-bottom: 2px solid #ccc;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #f7e9e9;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      margin: 5px;
+    }
+
+        .divider {
+            margin: 0 30px;
+            border-left: 2px solid #090404;
+            height: 24px;
         }
 
-        .navbar a {
-            text-decoration: none;
-            color: #f7e9e9;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
         /* Main Content Styles */
         .main-content {
             padding: 50px 20px;
             text-align: center;
         }
+
         .section-box {
             background-color: #ffffff;
             border-radius: 10px;
@@ -56,12 +69,14 @@
             padding: 30px;
             margin-bottom: 40px;
         }
+
         .section-heading {
             font-size: 2em;
             margin-bottom: 20px;
             color: #333333;
             text-align: center;
         }
+
         .feature {
             display: flex;
             align-items: center;
@@ -70,81 +85,110 @@
             border-radius: 5px;
             background-color: #f9f9f9;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
+
         .feature h3 {
             margin-top: 0;
             margin-bottom: 10px;
             color: #333333;
         }
+
         .feature-img {
-            width: 120px; /* Adjust the width as needed */
+            width: 100%;
+            max-width: 500px;
             height: auto;
             border-radius: 5px;
             margin-right: 20px;
+            flex-shrink: 0;
         }
+
         .feature-text {
             flex: 1;
             text-align: justify;
             color: #666666;
         }
+
         /* Footer Styles */
         footer {
-            background-color: #333;
+            background-color: #34495e;
             color: white;
             text-align: center;
             padding: 20px 0;
         }
-        .divider{
-            margin: 0 30px;
-            border-left: 2px solid #090404;
-            height: 24px;
-        }
-        /* Additional styles for Applications page */
-        .app-list {
-            list-style: none;
-            padding: 0;
-            text-align: left;
-        }
 
-        .app-list li {
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 15px;
-        }
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header {
+                padding: 30px 20px;
+            }
 
-        .app-title {
-            font-size: 1.5em;
-            font-weight: 600;
-            color: #273746;
-            margin-bottom: 8px;
-        }
+            header h1 {
+                font-size: 1.8em;
+            }
 
-        .app-description {
-            font-size: 1.1em;
-            color: #555;
-            font-family: Arial, sans-serif;
-        }
+            .navbar {
+                flex-direction: column;
+                padding: 10px;
+            }
 
+            .divider {
+                display: none;
+            }
+
+            .feature {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .feature-img {
+                margin-right: 0;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            .section-heading {
+                font-size: 1.5em;
+            }
+
+            .section-box {
+                padding: 20px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <header> 
-        <h1>PrediLnc - The lncRNA Disease Association Predictor</h1>
-    </header>
+    <header style="background-color: #273746; color: #ffffff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;">
+
+        <div style="text-align: left;">
+      
+          <h1 style="font-size: 4.5em; font-weight: bold; margin-left: 30px; margin-bottom:3px;">PrediLnc</h1>
+      
+          <p style="font-style: italic; font-size: 1.5em; margin-left: 30px; margin-top: 0;">The LncRNA Disease Association Predictor</p>
+      
+        </div>
+      
+        <div style="margin-left: 20px; margin-right: 30px">
+      
+          <img src="{{ url_for('static', filename='icon.png') }}" alt="Icon" style="height: 150px;">
+      
+        </div></header>
+      </header>
     <nav class="navbar">
         <a href="/">Home</a>
         <span class="divider"></span>
-        <a href="/about">About the Features</a>
+        <a href="/about">About Features</a>
         <span class="divider"></span>
-        <a href="/evidences">Evidences</a>
-        <span class="divider"></span>
-        <a href="/applications">Applications</a>
+        <a href="/evidences">Insights</a>
         <span class="divider"></span>
         <a href="/contribute">Contribute</a>
         <span class="divider"></span>
-        <a href="/about-us">About Us</a>
-    </nav>
+        <a href="/about-us">Contact</a>
+      </nav>
 
 
     <div class="main-content">
@@ -220,7 +264,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2023 The Translational Biology Lab - PrediLnc. All Rights Reserved.</p>
+        <p>&copy; 2025 PrediLnc. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
