@@ -184,8 +184,15 @@
           <p style="font-style: italic; font-size: 1.5em; margin-left: 30px; margin-top: 0;">The LncRNA Disease Association Predictor</p>
       
         </div>
-      
-        <div style="margin-left: 20px; margin-right: 30px">
+      <style>
+      @media (max-width: 630px) {
+        .iiitd-image {
+          display: none; /* Hide the container on smaller screens */
+        }
+      }
+    </style>
+    
+    <div class="iiitd-image" style="margin-left: 20px; margin-right: 30px">
       
           <img src="{{ url_for('static', filename='icon.png') }}" alt="Icon" style="height: 150px;">
       

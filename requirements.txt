@@ -1,14 +1,231 @@
 Levenshtein==0.23.0
 numpy==1.23.5
 pandas==2.2.0
-pickle==4.0
-os==1.11.1
-re==2.5.3
 requests==2.28.1
-torch==2.20.0
+torch==2.0.0
 tensorflow==2.9.0
 keras==2.9.0
-math==4.2.0
-BeautifulSoup==5.7.1
+beautifulsoup4==4.12.2
 flask==3.0.0
 Bio==1.5.9
+absl-py==2.2.2
+anyio==4.9.0
+argcomplete @ file:///tmp/build/80754af9/argcomplete_1618920853202/work
+astunparse==1.6.3
+beautifulsoup4==4.12.2
+bio==1.5.9
+biopython==1.85
+biothings_client==0.4.1
+blinker==1.9.0
+cachetools==5.5.2
+certifi==2025.4.26
+cffi @ file:///home/conda/feedstock_root/build_artifacts/cffi_1725560520483/work
+charset-normalizer==2.1.1
+click==8.2.1
+cmake==4.0.2
+exceptiongroup==1.3.0
+filelock==3.18.0
+Flask==3.0.0
+flatbuffers==1.12
+gast==0.4.0
+google-auth==2.40.2
+google-auth-oauthlib==0.4.6
+google-pasta==0.2.0
+gprofiler-official==1.0.0
+grpcio==1.71.0
+h11==0.16.0
+h5py==3.13.0
+httpcore==1.0.9
+httpx==0.28.1
+idna==3.10
+importlib-metadata @ file:///tmp/build/80754af9/importlib-metadata_1648562408262/work
+itsdangerous==2.2.0
+Jinja2 @ file:///home/conda/feedstock_root/build_artifacts/jinja2_1741263328855/work
+joblib==1.5.1
+keras==2.9.0
+Keras-Preprocessing==1.1.2
+Levenshtein==0.23.0
+libclang==18.1.1
+lit==18.1.8
+Markdown==3.8
+MarkupSafe @ file:///home/conda/feedstock_root/build_artifacts/markupsafe_1733219680183/work
+mpmath==1.3.0
+mygene==3.2.2
+networkx==3.4.2
+numpy==1.23.5
+nvidia-cublas-cu11==11.10.3.66
+nvidia-cuda-cupti-cu11==11.7.101
+nvidia-cuda-nvrtc-cu11==11.7.99
+nvidia-cuda-runtime-cu11==11.7.99
+nvidia-cudnn-cu11==8.5.0.96
+nvidia-cufft-cu11==10.9.0.58
+nvidia-curand-cu11==10.2.10.91
+nvidia-cusolver-cu11==11.4.0.1
+nvidia-cusparse-cu11==11.7.4.91
+nvidia-nccl-cu11==2.14.3
+nvidia-nvtx-cu11==11.7.91
+oauthlib==3.2.2
+opt_einsum==3.4.0
+packaging==25.0
+pandas==2.2.0
+platformdirs==4.3.8
+pooch==1.8.2
+protobuf==3.19.6
+pyasn1==0.6.1
+pyasn1_modules==0.4.2
+pycparser @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_pycparser_1733195786/work
+python-dateutil==2.9.0.post0
+pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1742920838005/work
+PyYAML @ file:///croot/pyyaml_1728657952215/work
+RapidFuzz==3.13.0
+requests==2.28.1
+requests-oauthlib==2.0.0
+rpy2 @ file:///home/conda/feedstock_root/build_artifacts/rpy2_1696426026727/work
+rsa==4.9.1
+scipy==1.15.3
+simplegeneric @ file:///home/conda/feedstock_root/build_artifacts/simplegeneric_1734685420077/work
+six==1.17.0
+sniffio==1.3.1
+soupsieve==2.7
+sympy==1.14.0
+tensorboard==2.9.1
+tensorboard-data-server==0.6.1
+tensorboard-plugin-wit==1.8.1
+tensorflow==2.9.0
+tensorflow-estimator==2.9.0
+tensorflow-io-gcs-filesystem==0.37.1
+termcolor==3.1.0
+threadpoolctl==3.6.0
+toml @ file:///tmp/build/80754af9/toml_1616166611790/work
+torch==2.0.0
+tqdm==4.67.1
+triton==2.0.0
+typing_extensions==4.13.2
+tzdata==2025.2
+tzlocal @ file:///home/conda/feedstock_root/build_artifacts/tzlocal_1739471996921/work
+urllib3==1.26.20
+Werkzeug==3.1.3
+wrapt==1.17.2
+xmltodict @ file:///croot/xmltodict_1738224717483/work
+yq @ file:///tmp/build/80754af9/yq_1614712515795/work
+zipp @ file:///croot/zipp_1732630741423/work
+absl-py==2.2.2
+amqp==5.3.1
+anyio==4.9.0
+argcomplete @ file:///tmp/build/80754af9/argcomplete_1618920853202/work
+astunparse==1.6.3
+async-timeout==5.0.1
+beautifulsoup4==4.12.2
+billiard==4.2.1
+bio==1.5.9
+biopython==1.85
+biothings_client==0.4.1
+blinker==1.9.0
+cachelib==0.13.0
+cachetools==5.5.2
+celery==5.5.2
+certifi==2025.4.26
+cffi @ file:///home/conda/feedstock_root/build_artifacts/cffi_1725560520483/work
+charset-normalizer==2.1.1
+click==8.2.1
+click-didyoumean==0.3.1
+click-plugins==1.1.1
+click-repl==0.3.0
+cmake==4.0.2
+exceptiongroup==1.3.0
+filelock==3.18.0
+Flask==3.0.0
+Flask-Caching==2.3.1
+Flask-Session==0.8.0
+flatbuffers==1.12
+gast==0.4.0
+google-auth==2.40.2
+google-auth-oauthlib==0.4.6
+google-pasta==0.2.0
+gprofiler-official==1.0.0
+grpcio==1.71.0
+gunicorn==23.0.0
+h11==0.16.0
+h5py==3.13.0
+httpcore==1.0.9
+httpx==0.28.1
+idna==3.10
+importlib-metadata @ file:///tmp/build/80754af9/importlib-metadata_1648562408262/work
+itsdangerous==2.2.0
+Jinja2 @ file:///home/conda/feedstock_root/build_artifacts/jinja2_1741263328855/work
+joblib==1.5.1
+keras==2.9.0
+Keras-Preprocessing==1.1.2
+kombu==5.5.3
+Levenshtein==0.23.0
+libclang==18.1.1
+lit==18.1.8
+lxml==5.4.0
+Markdown==3.8
+MarkupSafe @ file:///home/conda/feedstock_root/build_artifacts/markupsafe_1733219680183/work
+mpmath==1.3.0
+msgspec==0.19.0
+mygene==3.2.2
+networkx==3.4.2
+numpy==1.26.4
+nvidia-cublas-cu11==11.10.3.66
+nvidia-cuda-cupti-cu11==11.7.101
+nvidia-cuda-nvrtc-cu11==11.7.99
+nvidia-cuda-runtime-cu11==11.7.99
+nvidia-cudnn-cu11==8.5.0.96
+nvidia-cufft-cu11==10.9.0.58
+nvidia-curand-cu11==10.2.10.91
+nvidia-cusolver-cu11==11.4.0.1
+nvidia-cusparse-cu11==11.7.4.91
+nvidia-nccl-cu11==2.14.3
+nvidia-nvtx-cu11==11.7.91
+oauthlib==3.2.2
+opt_einsum==3.4.0
+packaging==25.0
+pandas==2.2.0
+platformdirs==4.3.8
+pooch==1.8.2
+prompt_toolkit==3.0.51
+protobuf==3.19.6
+pyasn1==0.6.1
+pyasn1_modules==0.4.2
+pycparser @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_pycparser_1733195786/work
+python-dateutil==2.9.0.post0
+pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1742920838005/work
+PyYAML @ file:///croot/pyyaml_1728657952215/work
+RapidFuzz==3.13.0
+redis==6.2.0
+requests==2.28.1
+requests-oauthlib==2.0.0
+rpy2 @ file:///home/conda/feedstock_root/build_artifacts/rpy2_1696426026727/work
+rsa==4.9.1
+scikit-learn==1.6.1
+scipy==1.15.3
+simplegeneric @ file:///home/conda/feedstock_root/build_artifacts/simplegeneric_1734685420077/work
+six==1.17.0
+sniffio==1.3.1
+soupsieve==2.7
+sympy==1.14.0
+tensorboard==2.9.1
+tensorboard-data-server==0.6.1
+tensorboard-plugin-wit==1.8.1
+tensorflow==2.9.0
+tensorflow-estimator==2.9.0
+tensorflow-io-gcs-filesystem==0.37.1
+termcolor==3.1.0
+threadpoolctl==3.6.0
+toml @ file:///tmp/build/80754af9/toml_1616166611790/work
+torch==2.0.0
+tqdm==4.67.1
+triton==2.0.0
+typing_extensions==4.13.2
+tzdata==2025.2
+tzlocal @ file:///home/conda/feedstock_root/build_artifacts/tzlocal_1739471996921/work
+urllib3==1.26.20
+vine==5.1.0
+wcwidth==0.2.13
+Werkzeug==3.1.3
+wrapt==1.17.2
+xmltodict @ file:///croot/xmltodict_1738224717483/work
+yq @ file:///tmp/build/80754af9/yq_1614712515795/work
+zipp @ file:///croot/zipp_1732630741423/work

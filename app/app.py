@@ -48,11 +48,6 @@ gdi=np.hstack((d1,d2))
 with open("saved_models_latest/lda.pickle", 'rb') as file:
     lda=pickle.load(file)
 
-# with open("saved_models_latest/disease_names.pickle", 'rb') as file:
-#     diseases=pickle.load(file)
-
-# with open("saved_models_latest/lncRNA_names.pickle", 'rb') as file:
-#     lncRNA_names=pickle.load(file)
 
 
 with open("saved_models_latest/total_genes_names.pickle", 'rb') as file:
@@ -61,23 +56,11 @@ with open("saved_models_latest/total_genes_names.pickle", 'rb') as file:
 with open("saved_models_latest/new_sequence.pickle", 'rb') as file:
     sequences=pickle.load(file)
 lncRNA_names = list(sequences.keys())   
-# with open("saved_models_latest/model1.pickle", 'rb') as file:
-#     model1=pickle.load(file)
 
-# with open("saved_models/model2.pickle", 'rb') as file:
-#     model2=pickle.load(file)
-
-# with open("saved_models/model3.pickle", 'rb') as file:
-#     model3=pickle.load(file)
-
-# with open("saved_models/model4.pickle", 'rb') as file:
-#     model4=pickle.load(file)
 
 with open("saved_models_latest/total_genes_names.pickle", 'rb') as file:
     targetNames=pickle.load(file)
 
-# with open("dis_doid_dic.pickle", 'rb') as file:
-#     dis_doid_dic=pickle.load(file)
 
 with open("saved_models_latest/doid_dic.pickle", 'rb') as file:
     dis_doid_dic=pickle.load(file)
@@ -296,15 +279,6 @@ with open("saved_models_latest/base_models.pkl", 'rb') as file:
 with open("saved_models_latest/meta_model.pkl", 'rb') as file:
     meta_model1=pickle.load(file)
 
-# with open("saved_models/scaler2.pickle", 'rb') as file:
-#     scaler2=pickle.load(file)
-
-# with open("saved_models/base_models2.pickle", 'rb') as file:
-#     base_models2=pickle.load(file)
-
-# with open("saved_models/meta_model2.pickle", 'rb') as file:
-#     meta_model2=pickle.load(file)
-
 
 
 diseases=np.array(diseases)
@@ -349,21 +323,6 @@ Session(app)
 
 disease_list = diseases 
 target_list = targetNames
-# selected_lncRNA=None
-# selected_diseases=[]
-# selected_target=[]
-# selected_lncRNAs_list=[]
-# selected_item=None
-# selected_list=[]
-# seq=None
-# dis_doid=None
-# selected_dis=None
-# selected_lncRNAs_list=[]
-# selected_genes_dis=[]
-# information_dic={}
-# similarity_stats=None
-# d2l=[]
-# l2d=[]
 
 
 
@@ -469,33 +428,15 @@ def find_info(sel_item,sel_list,f,scores, session_id, session_data):
                     
                     # Extracting title, link, and abstract
                     article_title = soup.find('ArticleTitle').text
-                    # abstract = soup.find('AbstractText')
-                    # if abstract:
-                    #     abstract_text = abstract.text
-                    # else:
-                    #     abstract_text = "Abstract not available."
-                    
-                    # Constructing the link to the article
+                
                     article_link = f'https://pubmed.ncbi.nlm.nih.gov/{pmid}/'
-                    
-                    # Print title, link, and 
-                    # if f==1:
-                    #     n,b,d=find_lncRNA_details(x)
-                    #     q["name"]=n
-                    #     q["biotype"]=b
-                    #     q["description"]=d
-                    # else:
-                    #     n,b,d=find_diseases_details(x)
-                    #     q["name"]=n
-                    #     q["symptoms"]=d
-                    #     q["description"]=b
+              
                     q["title"]=article_title
                     q["link"]=article_link
                     # q["abstract"]=abstract_text
                     details.append(q)
                     print(f"Title: {article_title}")
                     print(f"Link: {article_link}")
-                    # print(f"Abstract: {abstract_text}\n")
                     
                 else:
                     print(f"Error fetching article with PMID: {pmid}")
@@ -706,10 +647,7 @@ def check_doid(dis):
                 term_label = docs[0]['label']
                 d=doid
                 flag=True
-                # print(f"Disease Name: {disease_name}")
-                # print(f"DOID: {doid}")
-                    
-                # print(f"Term Label: {term_label}")
+        
             
         except:
                 print("Doid not found")
@@ -785,17 +723,6 @@ def applications():
 def get_doid():
     return jsonify({'doid': session['dis_doid']})
 
-# @app.route('/submit', methods=['POST'])
-# def submit():
-#     if 'seq' not in session:
-#         session['seq']=""
-#     # Process form data here if needed
-#     # Redirect to result.html after form submission
-#     print("Hello, world!")
-#     # return redirect('/result.html')
-#     printlist(session['seq'])
-    
-#     return redirect(url_for('result'))
 
 from threading import Thread
 import time
@@ -1022,42 +949,7 @@ def compute_known_features():
     gc.collect()
     return node_output1
 
-    # x1=x[:,0:4365*2]
-    # similarity_stats=x[:,0:4365].tolist()[0]
-    # x2=x[:,4365*2:3*4365]
-    # x3=lda[idx]
-    # # result_lnc, result_dis=gKernel(len(lncRNA_names), len(diseases),lda)
-    # x4=result_lnc[idx]
-    # d1=gdi[:,467:467*2]
-    # d2=gdi[:,0:467]
-    # xx1 = np.concatenate((x1.repeat(d1.shape[0], axis=0), d1), axis=1)
-    # xx2 = np.concatenate((x2.repeat(d2.shape[0], axis=0), d2), axis=1)
-    # xx3 = np.concatenate((x3.repeat(lda.T.shape[0], axis=0),lda.T), axis=1)
-    # xx4 = np.concatenate((x4.repeat(result_dis.shape[0], axis=0),result_dis), axis=1)
-    # return xx1,xx2,xx3,xx4
-
-    
-# def compute_features_diseases(dis):
-#     global similarity_stats
-#     idx=np.where(diseases==dis)
-#     x=gdi[idx]
-#     x1=x[:,467:2*467]
-#     similarity_stats=x1.tolist()[0]
-#     x2=x[:,0:467]
-#     # x1=x1.reshape(-1,1).T
-#     # x2=x2.reshape(-1,1).T
-#     x3=lda.T[idx]
-#     # result_lnc, result_dis=gKernel(len(lncRNA_names), len(diseases),lda)
-#     x4=result_dis[idx]
-#     d1=lncRNA_feature[:,0:4365*2]
-#     d2=lncRNA_feature[:,4365*2:3*4365]
-    
-#     xx1 = np.concatenate((d1,x1.repeat(d1.shape[0], axis=0)), axis=1)
-#     xx2 = np.concatenate((d2,x2.repeat(d2.shape[0], axis=0)), axis=1)
-#     xx3 = np.concatenate((lda,x3.repeat(lda.shape[0], axis=0)), axis=1)
-#     xx4 = np.concatenate((result_lnc,x4.repeat(result_lnc.shape[0], axis=0)), axis=1)
-#     return xx1,xx2,xx3,xx4
-
+   
 
 def printlist(session_id, session_data):
     try:
@@ -1376,19 +1268,6 @@ def printlist(session_id, session_data):
 
                 yy1=meta_model1.predict_proba(y1.T)[:, 1]
 
-                # y2=[]
-                # xx2s=scaler2.transform(xx2)
-                # for model in base_models2:
-                #     y2.append(base_models2[model].predict_proba(xx2s)[:, 1])
-                # y2=np.array(y2)
-
-
-                # yy2=meta_model2.predict_proba(y2.T)[:, 1]
-
-                # y1 = model1.predict_proba(x1)[:, 1]
-                # y2 = model2.predict_proba(x2)[:, 1]
-                # y3 = model3.predict_proba(x3)[:, 1]
-                # y4 = model4.predict_proba(x4)[:, 1]
                 y=(yy1)
                 top_10_indices = y.argsort()[-10:][::-1]
                 scores=y[top_10_indices]
@@ -1425,16 +1304,7 @@ def printlist(session_id, session_data):
                 a1=np.hstack((dd1,a1.reshape(-1,1)))
                 x1=x1.reshape(-1,1).T
 
-                # x=lncRNA_feature
-                # d1=x[:,467:2*467]
-                # d2=x[:,0:467]
-                # x3=lda.T[idx]
-                # result_lnc, result_dis=gKernel(len(lncRNA_names), len(diseases),lda)
-                # x4=result_dis[idx]
-                # d1=lncRNA_feature[:,0:4365*2]
-                # d2=lncRNA_feature[:,4365*2:3*4365]
-                # xx1 = np.concatenate((d1,x1.repeat(d1.shape[0], axis=0)), axis=1)
-
+               
 
                 target_input = session_data['selected_genes_dis']
                 unique_targets = list(disease_genes)
@@ -1533,14 +1403,7 @@ def printlist(session_id, session_data):
                 y1=np.array(y1)
                 print(y1)
                 yy1=meta_model1.predict_proba(y1.T)[:, 1]
-                # y2=[]
-                # xx2s=scaler2.transform(xx2)
-                # for model in base_models2:
-                #     y2.append(base_models2[model].predict_proba(xx2s)[:, 1])
-                # y2=np.array(y2)
-
-
-                # yy2=meta_model2.predict_proba(y2.T)[:, 1]
+               
 
                 y=(yy1)
                 print(y)
