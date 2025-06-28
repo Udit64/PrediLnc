@@ -15,7 +15,7 @@ Access the server here: http://predilnc.dhanjal-lab.iiitd.edu.in/
 
 ```bash
 # Clone this repository
-git clone https://github.com/username/predilnc-webserver.git
+git clone [https://github.com/username/predilnc-webserver.git](https://github.com/Udit64/PrediLnc.git)
 cd predilnc-webserver
 
 # Set up virtual environment
