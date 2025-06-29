@@ -6,7 +6,6 @@ import time
 from torch.nn.parameter import Parameter
 from torch.nn.modules.module import Module
 import torch.optim as optim
-from src import *
 
 class GraphConvolution(nn.Module):
     def __init__(self, in_features, out_features):
@@ -15,13 +14,13 @@ class GraphConvolution(nn.Module):
         self.out_features = out_features
         self.weight = Parameter(torch.FloatTensor(in_features, out_features))
         self.reset_parameters()
-        
+
     def reset_parameters(self):
         stdv = 1. / math.sqrt(self.weight.size(1))
         self.weight.data.uniform_(-stdv, stdv)
-        
+
     def forward(self, input, adj):
- 
+
         # Convolution operation
         support = torch.mm(input, self.weight)
         output = torch.mm(adj, support)
@@ -62,10 +61,10 @@ class AttentionLayer(nn.Module):
         O = torch.matmul(O, self.W_g)
 
         # Interpolation step
-        output = torch.matmul(adj,H) + self.gamma * O 
+        output = torch.matmul(adj,H) + self.gamma * O
 
         return output
-    
+
 class GCN(nn.Module):
     def __init__(self, nfeat, nhid, dropout):
         super(GCN, self).__init__()
@@ -93,7 +92,7 @@ def calculate_laplacian(adj):
     # Calculate the degree matrix
     degree = torch.sum(adj, dim=1)
     degree_matrix = torch.diag(degree)
-    
+
     # Calculate the Laplacian matrix
     laplacian = degree_matrix - adj
     return laplacian
@@ -111,5 +110,5 @@ def adj_norm(adj):
 
     # Normalize adjacency matrix
     adj_normalized = torch.mm(torch.mm(degree_inv_sqrt, adj_hat), degree_inv_sqrt)
-    
+
     return adj_normalized
