@@ -175,5 +175,5 @@ python app.py
 # 12. Open your browser and visit the local web interface at:
 #     http://127.0.0.1:5000/
 ```
-# WorkflowAdd commentMore actions
+# Workflow
 ![Workflow_final 1](https://github.com/user-attachments/assets/aab4ff5d-640d-4396-9203-43b33a50358d)
