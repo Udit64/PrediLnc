@@ -30,23 +30,27 @@ GARNet was validated using stratified cross-validation and ten real-world case s
 👉 [Try the Web App](http://predilnc.dhanjal-lab.iiitd.edu.in/)
 
 ---
+## ⚙️ Functionalities
 
-## 🔍 Key Features
+### 🔬 Predict Diseases for a lncRNA
+- Click on the **"Diseases for a lncRNA"** button.
+- Select a lncRNA from the dropdown list.
+- If your lncRNA is **not listed**, please provide:
+  - lncRNA **sequence**
+  - Related **diseases**
+  - Associated **target genes**
+- If your lncRNA **is listed**, you can directly view the predicted disease associations along with confidence scores based on our pre-processed data.
 
-### 🔬 Predict Diseases from a lncRNA
-- Choose from the list or input custom sequence, associated diseases, and targets.
-- View predicted disease associations with confidence scores.
-
-### 🧾 Predict lncRNAs from a Disease
-- Select a disease or input manually.
-- Provide associated gene/target data.
-- Receive top-ranked lncRNAs related to the condition.
+### 🧬 Predict lncRNAs for a Disease
+- Click on the **"lncRNAs for a Disease"** button.
+- Enter the **disease name** and optional **related genes**.
+- The system will return the top-ranked lncRNAs associated with that disease.
 
 ### 📚 Additional Sections
-- **About the Features** – Overview of biological inputs  
-- **Insights** – Workflow, methods, applications  
-- **Contribute** – Add new datasets  
-- **Contact** – Authors and contributors
+- **About the Features**: Explore the biological features used in predictions.
+- **Insights**: Learn about our workflow and potential applications.
+- **Contribute**: Submit new data to improve the platform.
+- **Contact**: Get details about authors and contributors.
 
 ---
 
@@ -109,3 +113,64 @@ cd app
 python app.py
 
 # Access the local server at: http://127.0.0.1:5000/
+# 1. Clone the PrediLnc GitHub repository to your local system
+git clone https://github.com/Udit64/PrediLnc.git
+cd PrediLnc
+
+# 2. Install Anaconda or Miniconda (choose one depending on preference)
+#    These provide a Python/R environment manager. This step is manual:
+#    - Anaconda: https://www.anaconda.com/products/distribution
+#    - Miniconda: https://docs.conda.io/en/latest/miniconda.html
+
+# 3. Create a new Conda environment named 'rtest' with Python 3.10 and R 4.1.2
+#    It also installs rpy2 (Python-R interface) and r-essentials (base R packages)
+conda create -n rtest python=3.10 r-base=4.1.2 rpy2 r-essentials -c conda-forge
+
+# 4. Activate the environment
+conda activate rtest
+
+# 5. Install all required Python dependencies using pip and requirements.txt
+#    This includes Flask, scikit-learn, numpy, pandas, and more
+pip install -r requirements.txt
+
+# 6. Install Redis 7.2.1 from source (required for real-time communication)
+git clone https://github.com/redis/redis.git
+cd redis
+
+# Switch to the specific Redis version tag
+git checkout 7.2.1
+
+# Compile the Redis source code using all available cores
+make -j
+
+# Start the Redis server in the background
+src/redis-server &
+
+# 7. Confirm Redis is running by checking the server response
+#    You should see the output: PONG
+redis-cli ping
+
+# Return to the PrediLnc root directory
+cd ..
+
+# 8. Download the pretrained model, processed feature matrices, and data files from Zenodo
+#    You need a valid access token to use zenodo_get
+zenodo_get --access-token G46P8DtW8lfKSG0u7IUVmCMb4idEKAoDCBL1yHWuwUkKvnFuGPSNCIkCham2 15764921
+
+# 9. Unzip the downloaded dataset archive into the app/ directory
+unzip saved_dataset.zip -d app/
+
+# Make sure the app/ directory now contains:
+# - models/          → trained machine learning models
+# - data/            → processed datasets and metadata
+# - feature_files/   → sequence, ontology, and interaction features
+# - CSV/JSON files   → supporting input/output mappings
+
+# 10. Move into the app/ directory to launch the Flask web application
+cd app
+
+# 11. Start the local Flask server. This will launch the web interface.
+python app.py
+
+# 12. Open your browser and visit the local web interface at:
+#     http://127.0.0.1:5000/
