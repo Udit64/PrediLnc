@@ -1,5 +1,7 @@
 import pickle
 import os
+os.makedirs("doSim", exist_ok=True)
+
 import re
 import gc
 import requests
